@@ -42,8 +42,3 @@ The extracted information is displayed on a multiplexed 7-segment display while 
 ## Notes
 
 WiFi credentials were removed from the public version of the code for security reasons.
-
-## Author
-
-Electronics and Telecommunications Student
-National University of Science and Technology POLITEHNICA Bucharest

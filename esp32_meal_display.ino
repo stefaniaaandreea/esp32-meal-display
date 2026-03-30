@@ -46,7 +46,7 @@ const uint8_t letterMap[27] = {
   0b01101100, // X
   0b01110110, // Y
   0b11011011, // Z
-  0b00010000  // Space (spațiu)
+  0b00010000  // Space
 };
 
 // Maparea segmentelor pentru cifrele 0-9
@@ -67,30 +67,30 @@ const uint8_t numberMap[10] = {
 const uint8_t segmentPins[7] = { SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G };
 
 int count = 0; // Contor pentru schimbarea literelor
-unsigned long previousMillis = 0; // Timpul anterior la care s-a schimbat litera
-unsigned long interval = 330; // Intervalul pentru schimbarea literelor
+unsigned long previousMillis = 0;
+unsigned long interval = 330;
 
 // Textul de afișat
-char text[100] = ""; // Textul actualizat
-int textLength; // Lungimea textului inclusiv spații
+char text[100] = "";
+int textLength;
 
 // Definește indicii pentru diferite părți ale textului
 int idMealStart, idMealEnd;
 int strMealStart, strMealEnd;
-int strCategoryStart, strCategoryEnd;  //PE ACESTEA LE CONCATENAM LA AFISARE
+int strCategoryStart, strCategoryEnd;
 
 //Afisare caracteristici wifi pe serial 
 
 void handleWiFiDetails() {  
      if (WiFi.status() == WL_CONNECTED) {
         int rssi = WiFi.RSSI();
-        int rssi_positive = -rssi; // Convertim valoarea negativă în pozitivă
+        int rssi_positive = -rssi;
         // Afișează detaliile rețelei WiFi
         Serial.print("Connected to WiFi SSID: ");
         Serial.println(WiFi.SSID());  // Afișează SSID-ul rețelei conectate
         Serial.print("Signal Strength (RSSI): ");
         Serial.print(rssi_positive);  // Afișează RSSI-ul convertit în pozitiv
-        Serial.println(" dB");  // Afișează 'dB' în loc de 'dBm'
+        Serial.println(" dB");
     } else {
         Serial.println("WiFi not connected");
     }
@@ -102,17 +102,17 @@ void setup() {
   pinMode(DIGIT2, OUTPUT);
   for (uint8_t i = 0; i < 7; i++) {
     pinMode(segmentPins[i], OUTPUT);
-    digitalWrite(segmentPins[i], LOW); // Asigură că toate segmentele sunt inițial dezactivate
+    digitalWrite(segmentPins[i], LOW);
   }
 
-  Serial.begin(115200); // Inițializează comunicația serială la 115200 bps
+  Serial.begin(115200);
 
   delay(1000);
 
 // conectare la retea
 
-  WiFi.mode(WIFI_STA); // Setează modul stație pentru WiFi
-  WiFi.disconnect(); // Deconectează orice conexiune existentă
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
   delay(100);
   Serial.println("Setup done");
 
@@ -138,7 +138,7 @@ void setup() {
   idMeal.trim(); // Elimină orice caracter newline de la sfârșit
 
   handleRoot(idMeal);
-  handleWiFiDetails();  //apelarea functiei 
+  handleWiFiDetails();
 }
 
 void handleRoot(String idMeal) { 
@@ -177,7 +177,7 @@ void handleRoot(String idMeal) {
         Serial.println(strIngredient2);
         Serial.println(strIngredient3);
 
-        Serial.println("Tema este retete."); // Text explicativ pt tema
+        Serial.println("Tema este retete.");
         
         // Concatenează câmpurile într-un singur șir
         char concatenatedText[100]; // Ajustează dimensiunea după necesități
@@ -221,7 +221,7 @@ void loop() {
     previousMillis = currentMillis;
     count++;
     if (count >= textLength - 1) {
-      count = 0; // Resetează contorul după ce ajunge la sfârșitul textului
+      count = 0;
     }
   }
 
